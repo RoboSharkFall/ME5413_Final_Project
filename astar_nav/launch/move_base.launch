@@ -1,0 +1,25 @@
+<launch>
+ 
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+
+    <rosparam file="$(find astar_nav)/params/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find astar_nav)/params/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    
+    <rosparam file="$(find astar_nav)/params/map_nav_params/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find astar_nav)/params/map_nav_params/global_costmap_params.yaml" command="load" />
+    
+    <rosparam file="$(find astar_nav)/params/base_local_planner_params.yaml" command="load" />
+    <rosparam file="$(find astar_nav)/params/move_base_params.yaml" command="load" />
+    
+    <rosparam file="$(find astar_nav)/params/base_global_planner_params.yaml" command="load" /> 
+    <param name="base_global_planner" value="global_planner/GlobalPlanner" />  
+    <param name="planner_frequency" value="1.0" />
+    <param name="planner_patience" value="5.0" />
+    <rosparam file="$(find dji_nav)/params/prohibition_areas.yaml" command="load" ns="global_costmap/costmap_prohibition_layer" />
+    <rosparam file="$(find dji_nav)/params/prohibition_areas.yaml" command="load" ns="local_costmap/costmap_prohibition_layer" />
+
+    <param name="base_local_planner" value="base_local_planner/TrajectoryPlannerROS"/>
+    <remap from="odom" to="odometry/filtered" />
+  </node>
+
+</launch>
