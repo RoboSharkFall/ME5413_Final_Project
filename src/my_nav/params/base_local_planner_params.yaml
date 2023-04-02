@@ -1,0 +1,55 @@
+TrajectoryPlannerROS:
+
+  # Robot Configuration Parameters
+  acc_lim_x: 10.0
+  acc_lim_theta:  20.0
+
+  max_vel_x: 0.5
+  min_vel_x: 0.1
+
+  max_vel_theta: 1.57
+  min_vel_theta: -1.57
+  min_in_place_vel_theta: 0.314
+
+  holonomic_robot: false
+  escape_vel: -0.5
+
+  # Goal Tolerance Parameters
+  yaw_goal_tolerance: 0.157
+  xy_goal_tolerance: 0.25
+  latch_xy_goal_tolerance: false
+
+  #!!!
+  # Forward Simulation Parameters
+  #The amount of time to forward-simulate trajectories in seconds 
+  sim_time: 2
+  #The step size, in meters, to take between points on a given trajectory 
+  sim_granularity: 0.02
+  angular_sim_granularity: 0.02
+  #The number of samples to use when exploring the x velocity space 
+  vx_samples: 20
+  #The number of samples to use when exploring the theta velocity space 
+  vtheta_samples: 40
+  #The frequency at which this controller will be called in Hz. Uses searchParam to read the parameter from parent namespaces if not set in the namespace of the controller. For use with move_base, this means that you only need to set its "controller_frequency" parameter and can safely leave this one unset. 
+  controller_frequency: 20.0
+
+  # Trajectory scoring parameters
+  meter_scoring: true # Whether the gdist_scale and pdist_scale parameters should assume that goal_distance and path_distance are expressed in units of meters or cells. Cells are assumed by default (false).
+  occdist_scale:  0.1 #The weighting for how much the controller should attempt to avoid obstacles. default 0.01
+  
+  #!!!
+  # pdist_scale 和gdist_scale 这两个参数在base_local_planner_params是非常重要的参数，要理解这两个参数，设想一下两个极端情况，pdist_scale很大，gdist_scale很小，这时候小车会不动，因为所有规划出的局部路径都将导致离开全局路径，小车还不如停在原地不动，得分高；如果pdist_scale很小，gdist_scale很大，这时候小车将朝着局部目标点（如果全局目标点在局部规划范围外，局部目标点就是全局路径在局部规划范围外的第一个点）或者全局目标点跑，完全不照全局路径走；这时候有个不好的影响是，狭窄通道或者避障转不过弯，因为局部路径规划给出的路径全部都是朝着目标走，而朝着目标走的局部路径都被障碍物挡住了，因此全部被否决，小车原地转圈。因此实际中还是应当将pdist_scale取得大一点，gdist_scale取得小一点。rbx1建议pdist为0.8，gdist为0.4
+  pdist_scale:  0.8 #0.8 # 0.75  #     The weighting for how much the controller should stay close to the path it was given . default 0.6
+  gdist_scale:  0.4 # 0.4 # 1.0 #     The weighting for how much the controller should attempt to reach its local goal, also controls speed  default 0.8
+
+  heading_lookahead: 0.325  #How far to look ahead in meters when scoring different in-place-rotation trajectories
+  heading_scoring: false  #Whether to score based on the robot's heading to the path or its distance from the path. default false
+  heading_scoring_timestep: 0.8   #How far to look ahead in time in seconds along the simulated trajectory when using heading scoring (double, default: 0.8)
+  dwa: true #Whether to use the Dynamic Window Approach (DWA)_ or whether to use Trajectory Rollout
+  simple_attractor: false
+  publish_cost_grid_pc: true
+
+  #Oscillation Prevention Parameters
+  oscillation_reset_dist: 0.05 #How far the robot must travel in meters before oscillation flags are reset (double, default: 0.05)
+  escape_reset_dist: 0.1
+  escape_reset_theta: 0.1
