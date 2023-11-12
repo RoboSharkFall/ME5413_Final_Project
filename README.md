@@ -33,9 +33,8 @@ This repo is a ros workspace, containing three rospkgs :
   
 Use the following command to download the repository : 
 `
- # Clone your fork of this repo (assuming home here `~/`)
- **cd**
-git clone https://github.com/RoboSharkFall/ME5413_Final_Project.git
+ # Clone your fork of this repo
+git clone https://github.com/RoboSharkFall/ME5413_Final_Project.git    
 cd ME5413_Final_Project
 # Install all dependencies
 rodeo install --from-paths src --ignore-src -r -y
