@@ -33,22 +33,16 @@ This repo is a ros workspace, containing three rospkgs :
   
   
  
- Use the following command to download the repository : 
- ```
-   # Clone your fork of this repo (assuming home here `~/`)
-   **cd**
-   git clone https://github.com/RoboSharkFall/ME5413_Final_Project.git
-   cd ME5413_Final_Project
+Use the following command to download the repository : 
 ```
-```
+ # Clone your fork of this repo (assuming home here `~/`)
+ **cd**
+git clone https://github.com/RoboSharkFall/ME5413_Final_Project.git
+cd ME5413_Final_Project
 # Install all dependencies
 rodeo install --from-paths src --ignore-src -r -y
-```
-```
 # Build
 catkin_make
-```
-```
 # Source 
 source devel/setup.bash
 ```
@@ -57,7 +51,7 @@ To properly load the gazebo world, you must have the necessary model files in th
 There are two sources of models needed:
 > * **Gazebo Model**
 ```
-\# Create the destination directory
+# Create the destination directory
 cd
 mkdir -p .gazebo/models
 # Clone the official gazebo models repo (assuming home here `~/`)
@@ -66,12 +60,14 @@ git clone https://github.com/osrf/gazebo_models.git
 cp -r ~/gazebo_models/* ~/.gazebo/models
 ```
 > * **Our customized models**
-> \# Install all dependencies
+```
+# Install all dependencies
 rosdep install --from-paths src --ignore-src -r -y
-> \# Build
+# Build
 catkin_make
-> \# Source 
+# Source 
 source devel/setup.bash
+```
 
 # Working Pipeline
 ------------------------------------------------------------
