@@ -161,7 +161,7 @@ roslaunch me5413_world world.launch
   roslaunch me5413_world dji_navigation.launch  
 
   using 'astar_nav' package, which  using A* global planner and base local planner.
-    > \# Launch the astar_nav   
+  > \# Launch the astar_nav   
       source ~/ME5413_Final_Project/devel/setup.bash  
       roslaunch me5413_world atar_navigation.launch  
 
