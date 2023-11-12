@@ -47,7 +47,7 @@ To properly load the gazebo world, you must have the necessary model files in th
 
 There are two sources of models needed:
 > * **Gazebo Model**
-```
+`
 # Create the destination directory
 cd
 mkdir -p .gazebo/models
@@ -55,50 +55,50 @@ mkdir -p .gazebo/models
 git clone https://github.com/osrf/gazebo_models.git
 # Copy the models into the `~/.gazebo/models` directory
 cp -r ~/gazebo_models/* ~/.gazebo/models
-```
+`
 > * **Our customized models**
-```
+`
 # Install all dependencies
 rosdep install --from-paths src --ignore-src -r -y
 # Build
 catkin_make
 # Source 
 source devel/setup.bash
-```
+`
 
 # Working Pipeline
 ------------------------------------------------------------
 **0. Gazebo World**
 This command will launch the gazebo with the project world : 
-> \# Launch Gazebo World together with our robot
+> \# Launch Gazebo World together with our robot  
     roslaunch me5413_world world.launch
     
 **1. Manual Control**
 If you wish to explore the gazebo world a bit, we provide you a way to manually control the robot around:
-> \# Only launch the robot keyboard teleop control
+> \# Only launch the robot keyboard teleop control  
   roslaunch me5413_world manual.launch
   
 **Note**: This robot keyboard teleop control is also included in all other launch files, so you don't need to launch this when you do mapping or navigation.  
 
 **2. Mapping**
  After launching **Step 0**, in the second terminal:
-> \# Launch GMapping
+> \# Launch GMapping  
 roslaunch me5413_world mapping.launch
 
 After finishing mapping, run the following command in the thrid terminal to save the map:
-> \# Save the map as `my_map` in the `maps/` folder
-roscd me5413_world/maps/
+> \# Save the map as `my_map` in the `maps/` folder  
+roscd me5413_world/maps/  
 rosrun map_server map_saver -f my_map map:=/map
 
 You may want to use other mapping method, in this work we use other two method : A-LOAM and Fast-LIO, and the EVO tool is used for mapping performance evaluation. The repositories are as follows :
-> **A-LOAM** (https://github.com/nuslde/aloam_lidar_odom_result_generate)
-**Fast-LIO** (https://github.com/hku-mars/FAST_LIO)
-**EVO tool** (https://github.com/MichaelGrupp/evo)
+> **A-LOAM** (https://github.com/nuslde/aloam_lidar_odom_result_generate)  
+**Fast-LIO** (https://github.com/hku-mars/FAST_LIO)  
+**EVO tool** (https://github.com/MichaelGrupp/evo)  
 
 The data you need for mapping and evaluation are as follows :
-> `/mid/points` : **Topic publish the 3D lidar data.**
-`/imu/data` : **Topic publish the IMU data.**
-`/gazebo/ground_truth/state` : **Topic publish the ground truth data.**
+> `/mid/points` : **Topic publish the 3D lidar data.**  
+`/imu/data` : **Topic publish the IMU data.**  
+`/gazebo/ground_truth/state` : **Topic publish the ground truth data.**  
 
 During running the mapping, run the following command to save the point cloud
 
@@ -125,22 +125,22 @@ o3d.io.write_point_cloud('path/for/saving/output.pcd', outlier_pts)
 ```
 
 In order to turn the `.pcd` file to `.pgm` map and the `yaml` file for navigation, running the following command
-> mkdir -p ~/pcd2pgm_ws/src
-cd ~/pcd2pgm_ws/src
-catkin_init_workspace
-git clone https://github.com/hujiax380/pcd2pgm.git
-cd ~/pcd2pgm_ws
+> mkdir -p ~/pcd2pgm_ws/src  
+cd ~/pcd2pgm_ws/src  
+catkin_init_workspace  
+git clone https://github.com/hujiax380/pcd2pgm.git  
+cd ~/pcd2pgm_ws  
 
 Then go to the `/home/USERNAME/pcd2pgm_ws/src/pcd2pgm/pcd2pgm/src/test.cpp` change the following code :
-```C++
+`C++
 //Line 57
 private_nh.param("file_directory", file_directory, std::string("/home/YOUR_USER_NAME/"));  //name of your device
 ROS_INFO("*** file_directory = %s ***\n", file_directory.c_str());
 private_nh.param("file_name", file_name, std::string("PCD_FILE_NAME"));  //Your pcd file name
-```
+`
 After changing the code, run the following command : 
-> catkin_make
-source devel/setup.bash
+> catkin_make  
+source devel/setup.bash  
 rosrun pcd2pgm pcd2topic
 
 then run the command **rosrun map_server map_saver** to save the map. Then change the map name to `my_map.pgm` and `my_map.yaml`, and modify code of `my_map.yaml` : **image: map.pgm** to **image: my_map.pgm**. After modify, copy the files to ``ME5413_Final_Project/src/me5413_world/maps/``, the map is complete.
