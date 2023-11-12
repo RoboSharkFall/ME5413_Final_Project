@@ -132,12 +132,14 @@ git clone https://github.com/hujiax380/pcd2pgm.git
 cd ~/pcd2pgm_ws  
 
 Then go to the `/home/USERNAME/pcd2pgm_ws/src/pcd2pgm/pcd2pgm/src/test.cpp` change the following code :
-`C++
-//Line 57
-private_nh.param("file_directory", file_directory, std::string("/home/YOUR_USER_NAME/"));  //name of your device
+```
+C++//Line 57
+private_nh.param("file_directory", file_directory, std::string("/home/YOUR_USER_NAME/"));
+//name of your device
 ROS_INFO("*** file_directory = %s ***\n", file_directory.c_str());
-private_nh.param("file_name", file_name, std::string("PCD_FILE_NAME"));  //Your pcd file name
-`
+private_nh.param("file_name", file_name, std::string("PCD_FILE_NAME"));
+//Your pcd file name
+```
 After changing the code, run the following command : 
 > catkin_make  
 source devel/setup.bash  
@@ -148,22 +150,22 @@ then run the command **rosrun map_server map_saver** to save the map. Then chang
 **3. Navigation**
 After install all the dependence and package, you can try to navigate the robot run the following command.
 we need to launch the gazebo model first to provide basic data and information:
-> \# Launch the robot 
-  cd ~/ME5413_Final_Project/
-source devel/setup.bash
-roslaunch me5413_world world.launch
+> \# Launch the robot   
+  cd ~/ME5413_Final_Project/  
+source devel/setup.bash  
+roslaunch me5413_world world.launch  
   
   Using 'dji_nav' package, which is Dijkstra global planner and base local planner(Recommened)
-  > \# Launch the dji_nav
-  source ~/ME5413_Final_Project/devel/setup.bash
-roslaunch me5413_world dji_navigation.launch
+  > \# Launch the dji_nav  
+  source ~/ME5413_Final_Project/devel/setup.bash  
+  roslaunch me5413_world dji_navigation.launch  
 
   using 'astar_nav' package, which  using A* global planner and base local planner.
-    > \# Launch the astar_nav 
-source ~/ME5413_Final_Project/devel/setup.bash
-roslaunch me5413_world atar_navigation.launch
+    > \# Launch the astar_nav   
+      source ~/ME5413_Final_Project/devel/setup.bash  
+      roslaunch me5413_world atar_navigation.launch  
 
   using  `avoid_nav` package, which using A* global planner and TEB local planner.
-    > \# Launch the avoid_nav 
-source ~/ME5413_Final_Project/devel/setup.bash
-roslaunch me5413_world avoid_navigation.launch
+    > \# Launch the avoid_nav   
+      source ~/ME5413_Final_Project/devel/setup.bash  
+      roslaunch me5413_world avoid_navigation.launch
