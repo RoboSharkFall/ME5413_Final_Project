@@ -15,7 +15,7 @@ System Requirements:
   > * Ubuntu 20.04 (18.04 not yet tested)
   > * ROS Noetic (Melodic not yet tested)
   > * C++11 and above
-  > * CMake: 3.0.2 and above
+  * CMake: 3.0.2 and above
 
 # Installation
 ------------------------------------------------------------
