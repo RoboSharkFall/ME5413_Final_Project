@@ -11,11 +11,11 @@ Now it is going to introduce how to run every work :
 
 # Dependencies
 ------------------------------------------------------------
-> * **System Requirements**:
- * Ubuntu 20.04 (18.04 not yet tested)
- * ROS Noetic (Melodic not yet tested)
- * C++11 and above
- * CMake: 3.0.2 and above
+System Requirements:
+  > * Ubuntu 20.04 (18.04 not yet tested)
+  > * ROS Noetic (Melodic not yet tested)
+  > * C++11 and above
+  > * CMake: 3.0.2 and above
 
 # Installation
 ------------------------------------------------------------
@@ -28,13 +28,11 @@ This repo is a ros workspace, containing three rospkgs :
   > * `avoid_nav` a navigation package using the Dijkstra global planner and Teb local planner
   > * `my_nav` navigation package is a package provided to new users who want to try their own method
   > * `calibrate_imu` is a package used to calibrate the IMU sensor.
-    > * `costmap_prohibition_layer` are a package used to produce the prohibition layer in costmap.
-     > * `master` is a package used to provide Velodyne simulator.
+ > * `costmap_prohibition_layer` are a package used to produce the prohibition layer in costmap.
+   > * `master` is a package used to provide Velodyne simulator.
   
-  
- 
 Use the following command to download the repository : 
-```
+`
  # Clone your fork of this repo (assuming home here `~/`)
  **cd**
 git clone https://github.com/RoboSharkFall/ME5413_Final_Project.git
@@ -45,7 +43,7 @@ rodeo install --from-paths src --ignore-src -r -y
 catkin_make
 # Source 
 source devel/setup.bash
-```
+`
 To properly load the gazebo world, you must have the necessary model files in the `~/.gazebo/models/` directory.
 
 There are two sources of models needed:
