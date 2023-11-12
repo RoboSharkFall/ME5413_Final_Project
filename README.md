@@ -2,14 +2,14 @@
 
 ------
 
-This work conducts the Mapping and Navigation of the robot in the Gazebo world **Assemble Line**, there are mainly 2 works conducted, which is shown below.
+This work conducts the Mapping and Navigation of the robot in the Gazebo world **Assemble Line**, there are mainly 2 works conducted, which are shown below.
 
 > * Mapping the environment by using the Jackal Robot.
-> * Navigate the robot to the assenble line, packing area and vehicle respectively.
+> * Navigate the robot to the assembly line, packing area, and vehicle respectively.
 
 Now it is going to introduce how to run every work :
 
-#Dependencies
+# Dependencies
 ------------------------------------------------------------
 > * **System Requirements**:
  * Ubuntu 20.04 (18.04 not yet tested)
@@ -20,35 +20,35 @@ Now it is going to introduce how to run every work :
 # Installation
 ------------------------------------------------------------
 This repo is a ros workspace, containing three rospkgs :
- > * `interactive_tools` are customized tools to interact with gazebo and your robot
+ > * `interactive_tools` are customized tools to interact with the gazebo and your robot
  > * `jackal_description` contains the modified jackal robot model descriptions
  > * `me5413_world` the main pkg containing the gazebo world, and the launch files
-  > * `dji_nav` are navigation package using Dijkstra global planner and base local planner, which has the best performance
+  > * `dji_nav` a navigation package using Dijkstra global planner and base local planner, which has the best performance
   > * `astar_nav` are navigation package using A* global planner and base local planner.
-  > * `avoid_nav` are navigation package using Dijkstra global planner and Teb local planner
-  > * `my_nav` are navigation package is the package provided to new user who want to try his own method
-  > * `calibrate_imu` are a pachage used to calibrate IMU sensor.
-    > * `costmap_prohibition_layer` are a ppacksge used to produce prohibition layer in costmap.
-     > * `master` is a package used to provide velodyne simulator.
+  > * `avoid_nav` a navigation package using the Dijkstra global planner and Teb local planner
+  > * `my_nav` navigation package is a package provided to new users who want to try their own method
+  > * `calibrate_imu` is a package used to calibrate the IMU sensor.
+    > * `costmap_prohibition_layer` are a package used to produce the prohibition layer in costmap.
+     > * `master` is a package used to provide Velodyne simulator.
   
   
  
- Using the following command to download the repository : 
+ Use the following command to download the repository : 
  
- > \# Clone your own fork of this repo (assuming home here `~/`)
+ > \# Clone your fork of this repo (assuming home here `~/`)
    **cd**
    git clone https://github.com/RoboSharkFall/ME5413_Final_Project.git
    cd ME5413_Final_Project
 
 > \# Install all dependencies
-rosdep install --from-paths src --ignore-src -r -y
+rodeo install --from-paths src --ignore-src -r -y
 
 > \# Build
 catkin_make
 > \# Source 
 source devel/setup.bash
 
-To properly load the gazebo world, you will need to have the necessary model files in the `~/.gazebo/models/` directory.
+To properly load the gazebo world, you must have the necessary model files in the `~/.gazebo/models/` directory.
 
 There are two sources of models needed:
 > * **Gazebo Model**
