@@ -166,6 +166,6 @@ roslaunch me5413_world world.launch
       roslaunch me5413_world atar_navigation.launch  
 
   using  `avoid_nav` package, which using A* global planner and TEB local planner.
-    > \# Launch the avoid_nav   
+  > \# Launch the avoid_nav   
       source ~/ME5413_Final_Project/devel/setup.bash  
       roslaunch me5413_world avoid_navigation.launch
